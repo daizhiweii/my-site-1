@@ -1,6 +1,11 @@
 import Mock from "mockjs";
 import qs from "querystring"; // 用于处理地址栏参数的第三方库
 
+// BlogDetail图片
+import FirBlogDetail from "@/assets/BlogDetail-1.png";
+import SecBlogDetail from "@/assets/BlogDetail-2.png";
+import ThiBlogDetail from "@/assets/BlogDetail-3.png";
+
 // 模拟博客分类数据
 Mock.mock("/api/blogtype", "get", {
   code: 0,
@@ -138,7 +143,7 @@ Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
   </ol>
   <p>所以，CORS是一种更好的跨域解决方案。</p><h1 id="article-md-title-1">概述</h1><p><code>CORS</code>是基于<code>http1.1</code>的一种跨域解决方案，它的全称是<strong>C</strong>ross-<strong>O</strong>rigin <strong>R</strong>esource <strong>S</strong>haring，跨域资源共享。</p><p>它的总体思路是：<strong>如果浏览器要跨域访问服务器的资源，需要获得服务器的允许</strong></p><figure class="markdown-image">
         
-        <img style="width:auto" src="http://mdrs.yuanjin.tech/img/image-20200421152122793.png" title="image-20200421152122793" alt="image-20200421152122793">
+        <img style="width:auto" src=${FirBlogDetail} title="image-20200421152122793" alt="image-20200421152122793">
         <figcaption>image-20200421152122793</figcaption>
     
       </figure><p>而要知道，一个请求可以附带很多信息，从而会对服务器造成不同程度的影响</p><p>比如有的请求只是获取一些新闻，有的请求会改动服务器的数据</p><p>针对不同的请求，CORS规定了三种不同的交互模式，分别是：</p><ul>
@@ -226,7 +231,7 @@ Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
   
   消息体中的数据</code></pre><p>当浏览器看到服务器允许自己访问后，高兴的像一个两百斤的孩子，于是，它就把响应顺利的交给js，以完成后续的操作</p><p>下图简述了整个交互过程</p><figure class="markdown-image">
         
-        <img style="width:auto" src="http://mdrs.yuanjin.tech/img/image-20200421162846480.png" title="image-20200421162846480" alt="image-20200421162846480">
+        <img style="width:auto" src=${SecBlogDetail} title="image-20200421162846480" alt="image-20200421162846480">
         <figcaption>image-20200421162846480</figcaption>
     
       </figure><h1 id="article-md-title-5">需要预检的请求</h1><p>简单的请求对服务器的威胁不大，所以允许使用上述的简单交互即可完成。</p><p>但是，如果浏览器不认为这是一种简单请求，就会按照下面的流程进行：</p><ol>
@@ -300,7 +305,7 @@ Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
   
   添加用户成功</code></pre><p>可以看出，当完成预检之后，后续的处理与简单请求相同</p><p>下图简述了整个交互过程</p><figure class="markdown-image">
         
-        <img style="width:auto" src="http://mdrs.yuanjin.tech/img/image-20200421165913320.png" title="image-20200421165913320" alt="image-20200421165913320">
+        <img style="width:auto" src=${ThiBlogDetail} title="image-20200421165913320" alt="image-20200421165913320">
         <figcaption>image-20200421165913320</figcaption>
     
       </figure><h1 id="article-md-title-6">附带身份凭证的请求</h1><p>默认情况下，ajax的跨域请求并不会附带cookie，这样一来，某些需要权限的操作就无法进行</p><p>不过可以通过简单的配置就可以实现附带cookie</p><pre><code class="language-js"><span class="hljs-comment">// xhr</span>

@@ -31,6 +31,7 @@ router.afterEach((to, from) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
+  // 导航守卫——全局前置守卫
   router.beforeEach((to, from, next) => {
     if (to.fullPath === "/my-site-1/dist/") {
       next({ name: "Home" });
