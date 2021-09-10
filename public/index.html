@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+    <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
+    <!-- 此处网站标题读的是webpack，因为vue-cli就是用webpack搭建的 -->
+    <!-- 想要实现标题动态变化，可以将其配置到路由route中 -->
+    <!-- 
+      此页面作为模板会被html-webpack-plugin读取，打包形成最终页面，
+      其中可以写动态（模板）代码，在node环境中会执行，并根据它生成最终的页面，
+      如<%= BASE_URL %>，表示读取一个变量BASE_URL（/）把它放到书写位置，
+      此项目不需要，因为favicon已在项目中用js设置
+    -->
+    <title></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app">
+      <!-- vue组件未加载出来时的占位图片，加载后会替换 -->
+      <style>
+        .loading-img {
+          position: fixed;
+          width: 100px;
+          height: 100px;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      </style>
+      <img class="loading-img" src="./image/loading.gif" alt="">
+    </div>
+    <!-- 
+      ref CDN（引用CDN资源优化打包体积）https://www.bootcdn.cn/ 
+      第一次会从CDN服务器上获取，后续会使用缓存
+    -->
+    <!-- 
+      开发环境不需要引用，引用后无法使用vue Devtools进行调试
+      （使用模板代码判断是否需要引用这些cnd） 
+    -->
+    <% if(NODE_ENV === "production") { %>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vuex/3.6.2/vuex.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/3.5.2/vue-router.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <% } %>
+    <!-- 
+      其中vuex和vue-router是作为vue插件来使用的，
+      使用上面传统的方式引入不需要注册插件（引入后会自动注册成为vue插件），
+      且以上四个都会污染全局变量，
+      因此可以通过判断全局变量存不存在来知晓引入方式（src/router、src/store）
+    -->
+    <!-- 
+      此时还有core.js和regerator-runtime占有较大打包体积：
+      为了兼容各种浏览器，`vue-cli`在内部使用了`@babel/present-env`对代码进行降级，
+      可以通过`.browserlistrc`配置来设置需要兼容的目标浏览器
+      旧版本浏览器有些api是不存在的，
+      因此需要使用core.js模拟（从es3开始把所有的api都模拟了一遍），
+      如其中他把mockjs也进行了降级模拟，生产环境不需要。
+      这是一种比较*偷懒*的办法，因为对于那些使用现代浏览器的用户，
+      它们也*被迫*使用了降级之后的代码，而降低的代码中包含了大量的`polyfill`，
+      从而提升了包的体积
+      因此，我们希望提供两种打包结果：
+      1. 降级后的包（大），提供给旧浏览器用户使用
+      2. 未降级的包（小），提供给现代浏览器用户使用
+      除了应用`webpack`进行多次打包外（用不同的配置打包两次，一个用bable一个不用），
+      还可以利用`vue-cli`给我们提供的命令：
+      vue-cli-service build --modern（在package.json中设置）
+      针对现代浏览器和旧版本浏览器提供两个打包结果
+      此时`webpack-bundle-analyzer`插件会出问题，因为它只能分析第一次打包的结果，
+      并会导致第二次打包结果报错，暂时不用管它
+    -->
+    <!-- built files will be auto injected -->
+  </body>
+</html>

@@ -1,0 +1,43 @@
+// 使用css module避免类名冲突
+@import "~@/styles/var.less";
+@import "~@/styles/mixin.less";
+.message {
+  .self-center();
+  z-index: 999;
+  line-height: 2;
+  // line-height: 2;
+  // 是2倍的意思，如果内部有不同大小文字的情况下，以最大文字为倍数。
+  // line-height: 2em;
+  // 也是2倍文字大小的意思，以父容器的font-size来计算。
+  padding: 10px 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  // 右2px 下2px 扩散5px
+  display: flex;
+  align-items: center;
+  // 侧轴方向居中
+  transition: 0.4s;
+  transform: translate(-50%, -50%) translateY(25px);
+  opacity: 0;
+  white-space: nowrap;
+  // 设置不换行
+  &-info {
+    background: @primary;
+  }
+  &-success {
+    background: @success;
+  }
+  &-warn {
+    background: @warn;
+  }
+  &-error {
+    background: @danger;
+  }
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 7px;
+}
+// <span>是行内元素,span只有margin-left和margin-right才有效果，
+// 要想margin-top生效就要把span转给块级元素才行。
