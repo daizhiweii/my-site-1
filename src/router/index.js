@@ -5,8 +5,8 @@ import routes from "./router";
 import { titleController } from "@/utils";
 
 // window.VueRouter不存在，说明不是用cdn传统方式引入，需要注册插件（详见public/index.html）
-if (!window.VueRouter) { 
-  Vue.use(VueRouter); 
+if (!window.VueRouter) {
+  Vue.use(VueRouter);
   // 使用一个vue插件VueRouter，会全局注册RouterView和RouterLink组件
 }
 
@@ -24,10 +24,20 @@ const router = new VueRouter({
 
 // 导航守卫——全局解析守卫
 // 路由变化时运行，一开始会运行一次
-router.afterEach((to, from)=>{
+router.afterEach((to, from) => {
   if (to.meta.title) { // 路由的自定义属性meta.title有值
     titleController.setRouteTitle(to.meta.title);
   }
 });
+
+if (process.env.NODE_ENV === 'production') {
+  router.beforeEach((to, from, next) => {
+    if (to.fullPath === "/my-site-1/dist/") {
+      next({ name: "Home" });
+    } else {
+      next();
+    }
+  })
+}
 
 export default router;

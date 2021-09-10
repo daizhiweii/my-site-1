@@ -46,21 +46,6 @@ function getPageComponent(pageCompResolver) {
 
 export default [
   {
-    name: "Index",
-    path: "/index.html",
-    // component: () => import(/* webpackChunkName: "home" */"@/views/Home"),
-    // component: getPageComponent("@/views/Home"), 
-    // 这种方式打包时难以分析依赖关系
-    // component: getPageComponent(import(/* webpackChunkName: "home" */"@/views/Home")),
-    // 这种方式会直接加载
-    component: getPageComponent(() =>
-      import(/* webpackChunkName: "home" */"@/views/Home")
-    ),
-    meta: {
-      title: "首页",
-    }
-  },
-  {
     name: "Home",
     path: "/",
     // component: () => import(/* webpackChunkName: "home" */"@/views/Home"), 
