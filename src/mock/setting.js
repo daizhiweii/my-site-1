@@ -13,7 +13,7 @@ Mock.mock("/api/setting", "get", {
     weixin: "v1120999545",
     weixinQrCode, // 微信二维码地址
     mail: "1120999545@qq.com",
-    icp: "黑ICP备17001719号", // 备案号
+    icp: "", // 备案号
     githubName: "daizhiweii", 
     favicon: "https://img2.baidu.com/it/u=282675288,3241429691&fm=26&fmt=auto&gp=0.jpg", // 网站的favicon地址
   },

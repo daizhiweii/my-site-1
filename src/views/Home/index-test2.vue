@@ -1,6 +1,6 @@
 <template>
   <div class="home-container" id="test" ref="container">
-    <h1>14.组件生命周期</h1>
+    <h1>组件生命周期</h1>
     <h1 ref="title">{{count}}</h1>
     <button @click="count++">count+1</button>
   </div>

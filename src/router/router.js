@@ -14,7 +14,7 @@ import "nprogress/nprogress.css"; // 导入nprogress库css
 import { start, done, configure } from "nprogress"; // 具名导入方便tree-shaking
 configure({
   trickleSpeed: 20, // 进度条速度
-  showSpinner: false, // 进度条100%后不显示小圈圈
+  showSpinner: false, // 不显示加载时的小圈圈
 });
 
 // 模拟延迟效果
@@ -44,16 +44,45 @@ function getPageComponent(pageCompResolver) {
   }
 }
 
+// component: () => import(/* webpackChunkName: "home" */"@/views/Home"), 
+// 等效于
+// component: () => ({
+//   component: import(/* webpackChunkName: "home" */"@/views/Home"),
+//   loading: xxx,
+//   delay: xxx,
+//   详见 vue API -> 深入了解组件 -> 动态组件&异步组件 -> 异步组件 -> 处理加载状态
+// })
+// 路由懒加载，用到这个路由时再去加载这个组件，
+// 动态import会生成一个新的chunk，打包后单独形成一个bundle，从而实现页面分包。
+// 函数返回一个promise，promise完成后得到一个组件
+// 在vue-router中是支持这种异步组件的
+// 加载一次后不需要再次加载
+// 写成下面这样就可以做一些额外的事情：
+// component: async () => {
+//   console.log("组件开始加载");
+//   const comp = await import(/* webpackChunkName: "home" */"@/views/Home");
+//   console.log("组件加载结束");
+//   return comp;
+// }
+// 根据不同环境设置不同代码：
+// component: async () => {
+//   console.log("组件开始加载");
+//   if (process.env.NODE_ENV === "development") { // 开发环境模拟延迟
+//     await delay(2000);
+//   }
+//   const comp = await import(/* webpackChunkName: "home" */"@/views/Home");
+//   console.log("组件加载结束");
+//   return comp;
+// }
+// 每个组件都需要这么写，则封装为getPageComponent函数
+// 函数参数不能直接传递路径，webpack打包时难以分析依赖关系
+// 也不能传递import("xxx")，会过早导入
+// 故传递一个函数返回import("xxx")
 export default [
   {
     name: "Home",
     path: "/",
-    // component: () => import(/* webpackChunkName: "home" */"@/views/Home"), 
-    // 路由懒加载，用到这个路由时再去加载这个组件，
-    // 动态import会生成一个新的chunk，打包后单独形成一个bundle，从而实现页面分包。
-    // 函数返回一个promise，promise完成后得到一个组件
-    // 在vue-router中是支持这种异步组件的
-    // 加载一次后不需要再次加载
+    // component: () => import(/* webpackChunkName: "home" */"@/views/Home"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "home" */"@/views/Home")
     ),

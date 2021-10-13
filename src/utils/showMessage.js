@@ -8,6 +8,7 @@ import styles from "./showMessage.module.less";
  * @param {String} type 消息类型 info error success warn
  * @param {Number} duration 多少毫秒后消失
  * @param {HTMLElement} container 容器，消息会显示到该容器的正中；如果不传，则显示到页面正中
+ * @param {Function} callback 回调函数
  */
 export default function (options = {}) {
   // content, type, duration, container, callback

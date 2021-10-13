@@ -41,7 +41,7 @@ export default {
         return;
       }
       // 滚动高度大于等于1000时显示
-      this.show = scrollDom.scrollTop >= 1000 ? true : false;
+      this.show = scrollDom.scrollTop >= 1000;
     },
   },
 };

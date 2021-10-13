@@ -1,5 +1,5 @@
 <template>
-  <!-- 20.组件递归 -->
+  <!-- 组件递归 -->
   <ul class="right-list-container">
     <li v-for="(item, i) in list" :key="i">
       <span @click="handleClick(item)" :class="{ active: item.isSelect }">

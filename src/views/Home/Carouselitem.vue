@@ -9,7 +9,7 @@
   <!-- mousemove鼠标移动事件 -->
     <div class="carousel-img" :style="imagePosition" ref="image">
       <ImageLoader
-        @load="this.showWords"
+        @load="showWords"
         :src="carousel.bigImg"
         :placeholder="carousel.midImg"
       />

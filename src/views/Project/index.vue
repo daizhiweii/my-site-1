@@ -82,10 +82,10 @@ export default {
     h2 {
       margin: 0;
     }
-  }
-  .github {
-    font-size: 14px;
-    color: @primary;
+    .github {
+      font-size: 14px;
+      color: @primary;
+    }
   }
 }
 </style>

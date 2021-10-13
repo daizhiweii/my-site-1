@@ -11,7 +11,7 @@
     <!-- 
       此页面作为模板会被html-webpack-plugin读取，打包形成最终页面，
       其中可以写动态（模板）代码，在node环境中会执行，并根据它生成最终的页面，
-      如<%= BASE_URL %>，表示读取一个变量BASE_URL（/）把它放到书写位置，
+      如<%= BASE_URL %>，表示读取一个变量BASE_URL（如/）把它放到书写位置，
       此项目不需要，因为favicon已在项目中用js设置
     -->
     <title></title>
@@ -40,7 +40,7 @@
     -->
     <!-- 
       开发环境不需要引用，引用后无法使用vue Devtools进行调试
-      （使用模板代码判断是否需要引用这些cnd） 
+      （使用模板代码判断是否需要引用这些cnd）
     -->
     <% if(NODE_ENV === "production") { %>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>

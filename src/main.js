@@ -5,9 +5,9 @@ import Vue from 'vue'; // 导入vue
 import App from './App.vue'; // 导入根组件
 import "./styles/global.less"; // 导入全局样式
 import router from "@/router"; // 导入路由实例
+
 import { showMessage } from "@/utils"; // 导入工具函数showMessage
-// 将showMessage方法注入到Vue原型上以方便后续使用
-Vue.prototype.$showMessage = showMessage;
+Vue.prototype.$showMessage = showMessage; // 注入到原型上
 
 import store from "@/store"; // 注册仓库
 store.dispatch("setting/fetchSetting"); // 获取全局共享数据存入仓库

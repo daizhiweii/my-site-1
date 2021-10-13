@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { showMessage } from "@/utils";
 // 凡是界面上有可能发生变化的动态数据，设置为props或者自己的data作为数据来源
 export default {
   data() {
@@ -77,7 +76,7 @@ export default {
         // this.isSubmitting = false;
         // this.formData.nickname = "";
         // this.formData.content = "";
-        showMessage({
+        this.$showMessage({
           content: successMsg,
           type: "success",
           duration: 1000,

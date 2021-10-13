@@ -45,17 +45,17 @@ li {
 .avatar-container {
   margin-right: 15px;
 }
+.data {
+  flex: 1 1 auto;
+  // 可放大可缩小，自适应布局
+  position: relative;
+}
 .nickname {
   color: darken(@success, 10%);
   margin-bottom: 10px;
 }
 .content {
   font-size: 14px;
-}
-.data {
-  flex: 1 1 auto;
-  // 可放大可缩小，自适应布局
-  position: relative;
 }
 .time {
   position: absolute;

@@ -3,22 +3,14 @@
 
 let routeTitle = "", siteTitle = "";
 
-// function setTitle() {
-//   if (!routeTitle && !siteTitle) { 
-//     document.title = "loading...";
-//   } else if (routeTitle && !siteTitle) {
-//     document.title = routeTitle;
-//   } else if (!routeTitle && siteTitle) {
-//     document.title = sietTitle;
-//   } else {
-//     document.title = `${routeTitle}-${siteTitle}`;
-//   }
-// }
-
 function setTitle() {
-  if (!routeTitle || !siteTitle) { // 至少有一个没有值
+  if (!routeTitle && !siteTitle) { 
     document.title = "loading...";
-  } else { // 都有值
+  } else if (routeTitle && !siteTitle) {
+    document.title = routeTitle;
+  } else if (!routeTitle && siteTitle) {
+    document.title = siteTitle;
+  } else {
     document.title = `${routeTitle}-${siteTitle}`;
   }
 }
