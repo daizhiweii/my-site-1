@@ -23,11 +23,11 @@ export default function(refValue, scrollBehavior = "smooth") {
         this.$bus.$emit("mainScroll", this.$refs[refValue]);
       },
       handleSetMainScroll(scrollTop) {
-        const OriginalScrollBehavior = this.$refs[refValue].style["scroll-behavior"];
-        this.$refs[refValue].style["scroll-behavior"] = scrollBehavior;
+        const OriginalScrollBehavior = this.$refs[refValue].style.scrollBehavior;
+        this.$refs[refValue].style.scrollBehavior = scrollBehavior;
         this.$refs[refValue].scrollTop = scrollTop;
         this.$refs[refValue].clientWidth;
-        this.$refs[refValue].style["scroll-behavior"] = OriginalScrollBehavior;
+        this.$refs[refValue].style.scrollBehavior = OriginalScrollBehavior;
       },
     },
   }

@@ -31,6 +31,7 @@ function getPageComponent(pageCompResolver) {
   return async () => {
     // console.log("组件开始加载");
     start();
+    console.log(process.env);
     if (process.env.NODE_ENV === "development") { // 开发模式模拟延迟效果
       // process是在node环境里的，而这段代码是在浏览器环境中执行的，
       // 此处可以使用是因为vue-cli在打包结果里向浏览器中注入了一些代码，
@@ -81,7 +82,8 @@ function getPageComponent(pageCompResolver) {
 export default [
   {
     name: "Home",
-    path: "/",
+    // path: "/",
+    path: process.env.BASE_URL,
     // component: () => import(/* webpackChunkName: "home" */"@/views/Home"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "home" */"@/views/Home")
@@ -92,7 +94,8 @@ export default [
   },
   {
     name: "About",
-    path: "/about",
+    // path: "/about"
+    path: `${process.env.BASE_URL}about`,
     // component: () => import(/* webpackChunkName: "about" */"@/views/About"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "about" */"@/views/About")
@@ -103,7 +106,8 @@ export default [
   },
   {
     name: "Blog",
-    path: "/blog",
+    // path: "/blog",
+    path: `${process.env.BASE_URL}blog`,
     // component: () => import(/* webpackChunkName: "blog" */"@/views/Blog"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "blog" */"@/views/Blog")
@@ -117,7 +121,8 @@ export default [
   // 匹配后会在<RouterView />处渲染相应组件
   {
     name: "CategoryBlog",
-    path: "/blog/cate/:categoryId",
+    // path: "/blog/cate/:categoryId",
+    path: `${process.env.BASE_URL}blog/cate/:categoryId`,
     // component: () => import(/* webpackChunkName: "blog" */"@/views/Blog"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "blog" */"@/views/Blog")
@@ -129,7 +134,8 @@ export default [
   // :xxx为动态路由，此处:categoryId可以匹配任何路径
   {
     name: "Detail",
-    path: "/blog/:id",
+    // path: "/blog/:id",
+    path: `${process.env.BASE_URL}blog/:id`,
     // component: () => import(/* webpackChunkName: "detail" */"@/views/Blog/Detail"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "detail" */"@/views/Blog/Detail")
@@ -140,7 +146,8 @@ export default [
   },
   {
     name: "Project",
-    path: "/project",
+    // path: "/project",
+    path: `${process.env.BASE_URL}project`,
     // component: () => import(/* webpackChunkName: "project" */"@/views/Project"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "project" */"@/views/Project")
@@ -151,7 +158,8 @@ export default [
   },
   {
     name: "Message",
-    path: "/message",
+    // path: "/message",
+    path: `${process.env.BASE_URL}message`,
     // component: () => import(/* webpackChunkName: "message" */"@/views/Message"),
     component: getPageComponent(() =>
       import(/* webpackChunkName: "message" */"@/views/Message")
