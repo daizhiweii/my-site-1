@@ -8,22 +8,29 @@
   -->
   <div class="project-container" ref="projectContainer" v-loading="loading">
     <a
+      class="project-item"
       v-for="item in data"
       :key="item.id"
       :href="item.url ? item.url : `javascript:alert('该项目无法通过外网访问')`"
       :target="item.url ? '_blank' : '_self'"
-      class="project-item"
     >
-    <!-- 
+      <!-- 
       javascript:void(0)：啥都不做
       javascript:alert('该项目无法通过外网访问')：弹出提示
       _blank新窗口，_self当前窗口
      -->
-      <img class="thumb" v-lazy="item.thumb" alt="">
+      <img class="thumb" v-lazy="item.thumb" alt="" />
       <div class="info">
-        <h2>{{item.name}}</h2>
-        <a class="github" :href="item.github" v-if="item.github" target="_blank">github：{{item.github}}</a>
-        <p v-for="(desc, i) in item.descripition" :key="i">{{desc}}</p>
+        <h2>{{ item.name }}</h2>
+        <a
+          class="github"
+          :href="item.github"
+          v-if="item.github"
+          target="_blank"
+        >
+          github：{{ item.github }}
+        </a>
+        <p v-for="(desc, i) in item.descripition" :key="i">{{ desc }}</p>
       </div>
     </a>
     <Empty v-if="data.length === 0 && !loading" />
@@ -71,6 +78,7 @@ export default {
   .thumb {
     width: 250px;
     min-height: 150px;
+    max-height: 200px;
     flex: 0 0 auto;
     object-fit: cover;
     border-radius: 5px;
