@@ -11,7 +11,7 @@ module.exports = {
   },
   configureWebpack: require("./webpack.config.js"),
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/my-site-1/dist/'
+    ? '/my-site-dist/'
     : '/',
 }
 // vue-cli同webpack一样都是在node环境中运行，故使用CommonJS模块化方式导出
